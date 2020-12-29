@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./chart/css/Chart.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body class="bg-warning py-5">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h1>Dynamic Chart Js 
+                    <button class="btn btn-success" onclick="updateChart()">
+                        Update
+                    </button>
+
+                    <button class="btn btn-success" onclick="addValue()">
+                        Add
+                    </button>
+                </h1>
+            </div>
+            <div class="card-body">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="./chart/js/Chart.min.js"></script>
+    <script src="./js/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <script src="./jquery/jq.min.js"></script>
+
+    <script>
+            var olddata = [0, 10, 5, 2, 20, 30, 45];
+            var newdata = [10, 20, 30, 40, 50, 60, 70];
+            var olddata1 = [99, 80, 75, 62, 50, 40, 35];
+            var newdata1 = [5, 10, 55, 15, 20, 55, 25];
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ["January", "February", "March", "April", "May", "June", "July"],
+                    datasets: [{
+                        label: "My First dataset",
+                        borderColor: 'rgb(0, 99, 132)',
+                        data: olddata,
+                    },
+
+                    {
+                        label: "My Second dataset",
+                        borderColor: 'rgb(0, 200, 0)',
+                        data: olddata1,
+                    },
+                ]
+                },
+                options: {}
+            });
+
+            function updateChart() {
+                // chart.data.datasets[0].data = newdata;
+                // chart.data.datasets[1].data = newdata1;
+                chart.data.labels = ["August", "September", "Octuber", "November", "December"]
+                chart.update();
+            };
+
+            function addValue() {
+                // chart.data.datasets[0].data.unshift();
+                // chart.data.datasets[0].data.pop();
+                // chart.data.datasets[0].data.shift(999);
+                // chart.data.datasets[0].data.push(999);
+                chart.data.datasets[0].data.reverse();
+                // chart.data.labels.push("January");
+                chart.update()
+            }
+    </script>
+</body>
+</html>
